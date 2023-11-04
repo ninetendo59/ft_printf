@@ -23,27 +23,27 @@ $(OBJ_DIR)%.o: $(UTIL_DIR)%.c | $(OBJF)
 
 $(NAME): $(OBJ)
 	make -C $(LIBFT)
+	bonus -C $(LIBFT)
 	cp libft/libft.a $(NAME)
 	ar r $(NAME) $(OBJ)
 	echo "ft_printf is compiled!"
 
 $(OBJF):
-	@mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)
 
 all: $(NAME) $(OBJ)
 
 clean:
-	@rm -rf $(OBJ_DIR)
-	@make clean -C $(LIBFT)
+	rm -rf $(OBJ_DIR)
+	make clean -C $(LIBFT)
 	echo "All objects are cleaned!"
 
 fclean: clean
-	@rm -f $(LIBFT)/libft.a
-	@rm -f $(NAME)
+	rm -f $(LIBFT)/libft.a
+	rm -f $(NAME)
 
 re: fclean all
 
 bonus: all
-	@make bonus -C $(LIBFT)
 
 .PHONY : all clean fclean re
